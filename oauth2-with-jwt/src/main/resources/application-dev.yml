@@ -1,0 +1,25 @@
+server:
+  port: 9098
+#  ssl:
+#    key-store: "D://Software Engineering/Algorithm/key/jwt2.jks"
+#    key-store-password: "password"
+#    key-store-type: "PKCS12"
+#    key-alias: "jwt"
+#    enabled: true
+
+spring:
+  datasource:
+    url: "jdbc:oracle:thin:@localhost:1521:orcl"
+    username: "HR"
+    password: 14292
+    driver-class-name: oracle.jdbc.OracleDriver
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+    initialization-mode: never
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: validate

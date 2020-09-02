@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+      consumer:
+            image: service-consumer
+            container_name: consumer
+            ports:
+            - "9091:9091"
+            networks:
+              - consumer-producer
+            depends_on:
+              - producer
+      producer:
+           image: service-producer
+           container_name: producer
+           ports:
+           - "9090:9090"
+           networks:
+            - consumer-producer
+      oauth2-jwt:
+           image: oauth2-with-jwt
+           container_name: oauth2
+           ports:
+           - "9098:9098"
+           networks:
+             - consumer-producer
+      config-server:
+           image: spring-config-server
+           container_name: config-server
+           ports:
+           - "8888:8888"
+           networks:
+             - consumer-producer
+
+networks:
+  consumer-producer:
